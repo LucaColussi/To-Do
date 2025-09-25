@@ -27,6 +27,16 @@ def add_todo():
     todos.append(new_todo)
     return jsonify(new_todo), 201
 
+@app.route("/todos/<int:todo_id>", methods =["PATCH"])
+def modify_todo(todo_id):
+    data = request.get_json()
+    for t in todos:
+        if t["id"] == todo_id:
+            t["completed"] = bool(data.get("completed"))
+            return jsonify(t), 200  # oppure 204 se non vuoi ritornare JSON
+
+    return jsonify({"error": "todo non trovato"}), 404
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
