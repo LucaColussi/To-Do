@@ -11,7 +11,7 @@ async function loadTodos() {
     const button = document.createElement("button");
     button.textContent = "DELETE";
     button.addEventListener("click" , () => {
-        fetch("http://127.0.0.1:5000/todos/" + todo.id, {
+        fetch(`http://127.0.0.1:5000/todos/${todo.id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -23,7 +23,7 @@ async function loadTodos() {
     input.id = "todo-" + todo.id;
     label.htmlFor = "todo-" + todo.id;
     input.addEventListener("change", (e) => {
-        fetch("http://127.0.0.1:5000/todos/" + todo.id, {
+        fetch(`http://127.0.0.1:5000/todos/${todo.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json"
