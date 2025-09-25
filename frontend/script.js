@@ -8,6 +8,17 @@ async function loadTodos() {
     const li = document.createElement("div");
     const label = document.createElement("label");
     const input = document.createElement("input");
+    const button = document.createElement("button");
+    button.textContent = "DELETE";
+    button.addEventListener("click" , () => {
+        fetch("http://127.0.0.1:5000/todos/" + todo.id, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        })
+        .then( () => loadTodos());
+    })
     input.type = "checkbox";
     input.id = "todo-" + todo.id;
     label.htmlFor = "todo-" + todo.id;
@@ -18,13 +29,15 @@ async function loadTodos() {
             "Content-Type": "application/json"
         },
         body : JSON.stringify({ completed : e.target.checked })
-        }).then( () => loadTodos());
+        })
+        .then( () => loadTodos());
     })
     
     label.textContent = todo.text;
     if(todo.completed === true) input.checked = true;
     li.appendChild(input);
     li.appendChild(label);
+    li.appendChild(button);
     ul.appendChild(li);
     });    
 }
@@ -49,5 +62,3 @@ btn.addEventListener("click" , () => {
     })
     .then( () => loadTodos());
 })
-
-const chkbx = document.getElementById("")

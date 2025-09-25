@@ -33,10 +33,18 @@ def modify_todo(todo_id):
     for t in todos:
         if t["id"] == todo_id:
             t["completed"] = bool(data.get("completed"))
-            return jsonify(t), 200  # oppure 204 se non vuoi ritornare JSON
+            return jsonify(t), 200  
 
     return jsonify({"error": "todo non trovato"}), 404
     
+@app.route("/todos/<int:todo_id>", methods = ["DELETE"])
+def delete_todo(todo_id):
+    for i in range(len(todos)):
+        if todos[i]["id"] == todo_id:
+            del todos[i]
+            return jsonify({"success": "amo i froci"}), 200 
 
+    return jsonify({"error": "todo non trovato"}), 404
+    
 if __name__ == "__main__":
     app.run(debug=True)
