@@ -1,17 +1,12 @@
 [
   {
-    "completed": true,
+    "completed": false,
     "id": "3ba71744-73b4-4b13-b79a-50ffb6d4b97c",
-    "text": "ds"
-  },
-  {
-    "completed": true,
-    "id": "537163ee-29ae-42af-baab-764159dfa761",
-    "text": "sus"
+    "text": "dsdsds"
   },
   {
     "completed": false,
-    "id": "e9105965-c74f-4e30-ba7b-32f8c1f3445f",
-    "text": "dsadsa"
+    "id": "537163ee-29ae-42af-baab-764159dfa761",
+    "text": "suss"
   }
 ]

@@ -31,8 +31,8 @@ def add_todo():
     save_todos(todos)
     return jsonify(new_todo), 201
 
-@app.route("/todos/<todo_id>", methods =["PATCH"])
-def modify_todo(todo_id):
+@app.route("/todos/<todo_id>/completed", methods =["PATCH"])
+def completed_todo(todo_id):
     data = request.get_json()
     todos = load_todos()
     for t in todos:
@@ -54,5 +54,17 @@ def delete_todo(todo_id):
 
     return jsonify({"error": "todo non trovato"}), 404
     
+@app.route("/todos/<todo_id>/modify", methods =["PATCH"])
+def change_text_todo(todo_id):
+    data = request.get_json()
+    todos = load_todos()
+    for t in todos:
+        if t["id"] == todo_id:
+            t["text"] = data.get("text")
+            save_todos(todos)
+            return jsonify(t), 200  
+
+    return jsonify({"error": "todo non trovato"}), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
